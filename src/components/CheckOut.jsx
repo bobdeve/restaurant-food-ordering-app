@@ -31,6 +31,7 @@ export const CheckOut = () => {
     
     resetItems();
     hideCart();
+    window.location.reload();
     
   };
 
