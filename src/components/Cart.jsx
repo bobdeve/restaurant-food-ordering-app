@@ -24,16 +24,16 @@ export const Cart = () => {
 
     return (
         <>
-            <div className='mx-14'>
-                <ul className='flex justify-around flex-wrap'>
-                    {data?.map((item) => (
-                      // Changed from key={index} to key={item.id}
-                        <li key={item._id}>  
-                            <CartItem item={item}/>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        </>
+        <div className='mx-6 md:mx-2'>  
+            <ul className='flex justify-around flex-wrap'>
+                {data?.map((item) => (
+                  // Changed from key={index} to key={item.id}
+                    <li key={item._id}>  
+                        <CartItem item={item}/>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    </>
     )
 }
