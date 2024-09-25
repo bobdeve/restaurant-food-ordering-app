@@ -3,7 +3,8 @@ import logoPic from '../../src/assets/logo.jpg'
 import { Button } from '../UI/Button'
 import CartContext from '../storage/CartContext'
 import UserProgressContext from '../storage/UserProgressContext'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -25,7 +26,10 @@ export const Header = () => {
             <h1 className='text-center md:text-left text-lg md:text-xl'>Food ordering App</h1>
         </div>
         
-        <Button onClick={showUserCart} label="main">Cart({totalNumberOfItems})</Button>
+        {/* <Button onClick={showUserCart} label="main">Cart({totalNumberOfItems})</Button> */}
+        <Button onClick={showUserCart} label="main">
+    <FontAwesomeIcon icon={faShoppingCart} /> {totalNumberOfItems}
+</Button>
     </div>
   )
 }
