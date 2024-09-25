@@ -73,17 +73,15 @@ export const CheckOut = () => {
 
   if (progress === "success") {
     return (
-      <Modal  onCancel={progress === "success"? hideUserCart:null} open={progress === 'success'}>
-        <div className=" p-16 flex flex-col gap-3">
-          <h1 className="text-[20px] ">Your Order has been completed. Order again?</h1>
-          <div className="flex gap-2 justify-end">
-
-          <button  className="self-end bg-[#FFC404] px-5 py-3" onClick={()=>showHistories()} >Go to order history</button>
-          <Button onClick={resetCartItems}>Order Again</Button>
-          </div>
-    
+      <Modal onCancel={progress === "success" ? hideUserCart : null} open={progress === 'success'}>
+      <div className="p-16 flex flex-col gap-3">
+        <h1 className="text-[20px]">Your Order has been completed. Order again?</h1>
+        <div className="flex flex-col sm:flex-row gap-2 justify-end">
+          <button className="self-end bg-[#FFC404] px-5 py-3 rounded shadow-md hover:bg-[#e5b004] transition duration-200" onClick={() => showHistories()}>Go to order history</button>
+          <Button onClick={resetCartItems} className="w-full sm:w-auto">Order Again</Button>
         </div>
-      </Modal>
+      </div>
+    </Modal>
     );
   }
   if(progress === "history"){
