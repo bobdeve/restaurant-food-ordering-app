@@ -9,8 +9,7 @@ import { Modal } from "../UI/Modal";
 export const CartItem = ({ item }) => {
   const { items, addItems,removeItems } = useContext(CartContext);
   const { progress, hideCart, showCart,showCheckOut } = useContext(UserProgressContext);
-  console.log(items)
-  console.log(item)
+ 
   const totalNumberOfItems = items.reduce(
     (total, item) => total + item.quantity,
     0

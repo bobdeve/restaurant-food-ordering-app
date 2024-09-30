@@ -14,9 +14,9 @@ export const Cart = () => {
     // const {data} = useHttp('http://localhost:3000/meals',config,[])
     // const {data} = useHttp('https://demo-foodorder-3.onrender.com/foods',config,[])
     const { data, loading, error } = useFetchFoods('https://demo-foodorder-3.onrender.com/foods');
-    console.log(data)
+    
     const {progress,hideCart} = useContext(UserProgressContext)
-    console.log(progress)
+   
 
     const hideuserCart = () => {
         hideCart()
