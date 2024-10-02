@@ -6,22 +6,25 @@ import UserProgressContext from '../storage/UserProgressContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch, useSelector } from 'react-redux'
-import { itemAction } from '../store'
+import {  progressAction } from '../store'
+
 
 
 
 export const Header = () => {
-  const {items} =  useContext(CartContext)
-  const dispatch=useDispatch()
-  const {showCart,hideCart,progress} = useContext(UserProgressContext)
+
+ 
+ 
   const userItems= useSelector((state)=> state.items.items)
-  console.log(userItems)
-  const totalNumberOfItems = items.reduce((total, item) => total + item.quantity,0)
+  const progressU= useSelector((state)=> state.progress.progress)
+  console.log(progressU)
+  const dispatch= useDispatch()
+  const totalNumberOfItems = userItems.reduce((total, item) => total + item.quantity,0)
 
   const showUserCart =()=>{
-    showCart()
-    dispatch(itemAction.addItems({_id:1, name:"bob"}))
-    console.log("showUserCart")
+   
+     dispatch(progressAction.showCart())
+    
   }
   
   return (

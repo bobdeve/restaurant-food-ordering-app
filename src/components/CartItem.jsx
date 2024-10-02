@@ -5,11 +5,14 @@ import { currencyFormatter } from "../utils/formatting";
 import CartContext from "../storage/CartContext";
 import UserProgressContext from "../storage/UserProgressContext";
 import { Modal } from "../UI/Modal";
+import { useDispatch, useSelector } from "react-redux";
+import { itemAction } from "../store";
+
 
 export const CartItem = ({ item }) => {
   const { items, addItems,removeItems } = useContext(CartContext);
-  const { progress, hideCart, showCart,showCheckOut } = useContext(UserProgressContext);
- 
+  //const { progress, hideCart, showCart,showCheckOut } = useContext(UserProgressContext);
+  const dispatch = useDispatch()
   const totalNumberOfItems = items.reduce(
     (total, item) => total + item.quantity,
     0
@@ -18,6 +21,9 @@ export const CartItem = ({ item }) => {
  
   const additemToCart = () => {
     addItems(item);
+    dispatch(itemAction.addItems(item))
+    
+    
   };
   
  
