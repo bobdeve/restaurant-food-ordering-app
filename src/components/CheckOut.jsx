@@ -69,10 +69,7 @@ export const CheckOut = () => {
     }; // Added date and time
     postData(sampleitem);
     dispatch(progressAction.showSuccess());
-    console.log(userItems)
-  
-    
-
+   
     const stripe = await loadStripe(import.meta.env.VITE_P_KEY)
     const body ={
       items: userItems
@@ -80,7 +77,8 @@ export const CheckOut = () => {
     const headers ={
       "Content-Type": "application/json"
     }
-    const response = await fetch ("https://demo-foodorder-3.onrender.com/create-checkout-session",{
+   // http://localhost:3000/create-checkout-session
+    const response = await fetch ("http://localhost:3000/create-checkout-session",{
       method: 'POST',
       headers: headers,
       body:JSON.stringify(body)
