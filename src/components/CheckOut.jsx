@@ -59,37 +59,56 @@ export const CheckOut = () => {
   const totalIems = { userItems};
   const handleSubmit = async (event) => {
     event.preventDefault();
+  
     const customerData = Object.fromEntries(
       new FormData(event.target).entries()
     );
+    
     const sampleitem = {
       ...customerData,
       totalIems,
       date: new Date().toISOString(),
-    }; // Added date and time
+    };
+  
     postData(sampleitem);
     dispatch(progressAction.showSuccess());
-   
-    const stripe = await loadStripe(import.meta.env.VITE_P_KEY)
-    const body ={
-      items: userItems
+  
+    try {
+      const stripe = await loadStripe(import.meta.env.VITE_P_KEY);
+      if (!stripe) {
+        throw new Error('Stripe.js failed to load');
+      }
+  
+      const body = { items: userItems };
+      const headers = { "Content-Type": "application/json" };
+  
+      const response = await fetch("https://demo-foodorder-3.onrender.com/create-checkout-session", {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(body)
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to create checkout session');
+      }
+  
+      const session = await response.json();
+      
+      const result = await stripe.redirectToCheckout({
+        sessionId: session.id
+      });
+  
+      if (result.error) {
+        console.error(result.error.message);
+      }
+  
+    } catch (error) {
+      console.error('Error during checkout:', error);
     }
-    const headers ={
-      "Content-Type": "application/json"
-    }
-   // http://localhost:3000/create-checkout-session
-    const response = await fetch ("https://demo-foodorder-3.onrender.com/create-checkout-session",{
-      method: 'POST',
-      headers: headers,
-      body:JSON.stringify(body)
-    })
-    const session = await response.json()
-    const result = stripe.redirectToCheckout({
-      sessionId:session.id
-    })
   
     event.target.reset();
   };
+  
 
   const [removedItems, setRemovedItems] = useState([]); // New state for removed items
 
