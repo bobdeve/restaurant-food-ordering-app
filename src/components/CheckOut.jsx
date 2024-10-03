@@ -78,7 +78,7 @@ export const CheckOut = () => {
       "Content-Type": "application/json"
     }
    // http://localhost:3000/create-checkout-session
-    const response = await fetch ("http://localhost:3000/create-checkout-session",{
+    const response = await fetch ("https://demo-foodorder-3.onrender.com/create-checkout-session",{
       method: 'POST',
       headers: headers,
       body:JSON.stringify(body)
