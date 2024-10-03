@@ -69,7 +69,10 @@ export const CheckOut = () => {
     }; // Added date and time
     postData(sampleitem);
     dispatch(progressAction.showSuccess());
-   
+    console.log(userItems)
+  
+    
+    console.log(updatedItems)
     const stripe = await loadStripe(import.meta.env.VITE_P_KEY)
     const body ={
       items: userItems
