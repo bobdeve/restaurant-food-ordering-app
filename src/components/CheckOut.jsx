@@ -72,7 +72,7 @@ export const CheckOut = () => {
     console.log(userItems)
   
     
-    console.log(updatedItems)
+
     const stripe = await loadStripe(import.meta.env.VITE_P_KEY)
     const body ={
       items: userItems
