@@ -56,7 +56,7 @@ export const CheckOut = () => {
     (total, item) => total + item.price * item.quantity,
     0
   );
-  const totalIems = { userItems, totalprice };
+  const totalIems = { userItems};
   const handleSubmit = async (event) => {
     event.preventDefault();
     const customerData = Object.fromEntries(
