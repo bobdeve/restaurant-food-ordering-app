@@ -69,22 +69,24 @@ export const CheckOut = () => {
     }; // Added date and time
     postData(sampleitem);
     dispatch(progressAction.showSuccess());
-    // const stripe = await loadStripe('pk_test_51Q5O66BnIlYJQo7puT8G3X1Br30MqLGMQOWLsd8Wa6ivISAzxDbcmZ3rbsha9STrpqzHmNw4iZFQBcVgQzb1ZVGD009ilviAis')
-    // const body ={
-    //   items: userItems
-    // }
-    // const headers ={
-    //   "Content-Type": "application/json"
-    // }
-    // const response = await fetch ($(apiUrl)/create-checkout-session,{
-    //   method: 'POST',
-    //   headers: headers,
-    //   body:JSON.stringify(body)
-    // })
-    // const session = await response.json()
-    // const result = stripe.redirectToCheckout({
-    //   sessionId:session.id
-    // })
+   
+    const stripe = await loadStripe(import.meta.env.VITE_P_KEY)
+    const body ={
+      items: userItems
+    }
+    const headers ={
+      "Content-Type": "application/json"
+    }
+    const response = await fetch ("https://demo-foodorder-3.onrender.com/create-checkout-session",{
+      method: 'POST',
+      headers: headers,
+      body:JSON.stringify(body)
+    })
+    const session = await response.json()
+    const result = stripe.redirectToCheckout({
+      sessionId:session.id
+    })
+  
     event.target.reset();
   };
 
