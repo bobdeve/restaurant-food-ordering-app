@@ -12,6 +12,8 @@ export const Success = () => {
     navigate('/'); // Navigate to the home page
   };
 
+
+
   useEffect(() => {
     // Set a timeout to redirect after 5 seconds
     const timer = setTimeout(() => {
@@ -21,6 +23,8 @@ export const Success = () => {
     // Clean up the timeout if the component unmounts
     return () => clearTimeout(timer);
   }, [navigate]); // Added navigate as a dependency
+
+
 
   return (
     <Modal onCancel={reloadPage} open={true}>

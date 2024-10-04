@@ -17,7 +17,7 @@ export const Failed = () => {
       // Set a timeout to redirect after 5 seconds
       const timer = setTimeout(() => {
         navigate('/');
-      }, 15000);
+      }, 10000);
   
       // Clean up the timeout if the component unmounts
       return () => clearTimeout(timer);
