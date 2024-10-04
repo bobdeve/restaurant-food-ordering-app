@@ -1,15 +1,26 @@
-import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { Button } from '../UI/Button';
 import { Modal } from '../UI/Modal';
+import { useEffect } from 'react';
 
 export const Success = () => {
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate();
 
   const reloadPage = () => {
     navigate('/'); // Navigate to the home page
   };
+
+  useEffect(() => {
+    // Set a timeout to redirect after 5 seconds
+    const timer = setTimeout(() => {
+      navigate('/');
+    }, 5000);
+
+    // Clean up the timeout if the component unmounts
+    return () => clearTimeout(timer);
+  }, [navigate]); // Added navigate as a dependency
 
   return (
     <Modal onCancel={reloadPage} open={true}>
@@ -20,7 +31,7 @@ export const Success = () => {
         <p className='text-center mx-auto w-3/4 indent-8'>
           You will get redirected to the home page shortly, or click here to return to the home page.
         </p>
-        <Button onClick={reloadPage}>Home</Button> {/* Use the reloadPage function */}
+        <Button onClick={reloadPage}>Home</Button>
       </div>
     </Modal>
   );
