@@ -5,6 +5,8 @@ import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { Button } from '../UI/Button';
 import { Modal } from '../UI/Modal';
 import { useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Failed = () => {
     const navigate = useNavigate();
@@ -14,6 +16,12 @@ export const Failed = () => {
     };
   
     useEffect(() => {
+        toast.error("Your payment was not successful", {
+            position: "top-center", // Toast position
+            autoClose: 4000, // Timeout for closing the toast
+            hideProgressBar: false, // Show progress bar
+            // progressClassName: 'bg-yellow-400', // Tailwind class for progress bar color
+          });
       // Set a timeout to redirect after 5 seconds
       const timer = setTimeout(() => {
         navigate('/');
@@ -34,6 +42,7 @@ export const Failed = () => {
           </p>
           <Button onClick={reloadPage}>Home</Button>
         </div>
+        <ToastContainer />
       </Modal>
     );
   };

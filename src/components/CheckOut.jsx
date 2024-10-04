@@ -117,7 +117,7 @@ export const CheckOut = () => {
       return <h1 className="p-10">No items in the cart</h1>;
 
     return (
-      <div className="flex flex-col w-full max-w-[700px] px-5 py-8 gap-5 sm:px-12 sm:py-12">
+      <div className="flex flex-col w-full max-w-[700px] px-5   sm:px-12 pt-4">
         <h1 className="text-cyan-950 text-lg sm:text-2xl">Your Cart</h1>
         <ul className="flex flex-col gap-3">
           {userItems.map((item, index) => (
@@ -137,7 +137,7 @@ export const CheckOut = () => {
                 </span>
               </div>
 
-              <div className="flex justify-between items-center w-full mt-2 sm:mt-0">
+              <div className="flex justify-between items-center w-full  sm:mt-0">
                 <div className="flex items-center">
                   <button
                     onClick={() => userRemoveItem(item._id)}
@@ -268,7 +268,7 @@ export const CheckOut = () => {
         open={progress === "cart"}
       >
         {renderCartModal()}
-        <div className="flex gap-3 justify-end ml-auto mt-4 p-10">
+        <div className="flex gap-3 justify-end ml-auto  p-10">
           {userItems.length !== 0 ? (
             <>
               <button onClick={hideUserCart}>Close</button>

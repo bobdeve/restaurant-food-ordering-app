@@ -4,6 +4,9 @@ import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { Button } from '../UI/Button';
 import { Modal } from '../UI/Modal';
 import { useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export const Success = () => {
   const navigate = useNavigate();
@@ -15,15 +18,22 @@ export const Success = () => {
 
 
   useEffect(() => {
-    // Set a timeout to redirect after 5 seconds
+    // Show toast immediately
+    toast.success("Your payment was processed successfully", {
+      position: "top-center", // Toast position
+      autoClose: 4000, // Timeout for closing the toast
+      hideProgressBar: false, // Show progress bar
+      // progressClassName: 'bg-yellow-400', // Tailwind class for progress bar color
+    });
+
+    // Redirect after 5 seconds
     const timer = setTimeout(() => {
       navigate('/');
     }, 5000);
 
-    // Clean up the timeout if the component unmounts
+    // Cleanup the timer on component unmount
     return () => clearTimeout(timer);
-  }, [navigate]); // Added navigate as a dependency
-
+  }, [navigate]);
 
 
   return (
@@ -36,7 +46,9 @@ export const Success = () => {
           You will get redirected to the home page shortly, or click here to return to the home page.
         </p>
         <Button onClick={reloadPage}>Home</Button>
+       
       </div>
+      <ToastContainer />
     </Modal>
   );
 };

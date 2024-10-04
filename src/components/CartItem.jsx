@@ -7,6 +7,9 @@ import UserProgressContext from "../storage/UserProgressContext";
 import { Modal } from "../UI/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { itemAction } from "../store";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 export const CartItem = ({ item }) => {
@@ -22,6 +25,12 @@ export const CartItem = ({ item }) => {
   const additemToCart = () => {
     addItems(item);
     dispatch(itemAction.addItems(item))
+    toast.success("Food added successfully", {
+      position: "top-center", // Toast position
+      autoClose: 2000, // Ensure the toast has a timeout (shows progress bar)
+      hideProgressBar: false, // Ensure progress bar is visible
+      progressClassName: '#FFC404', // Tailwind class for progress bar color
+    });
     
     
   };
@@ -45,6 +54,7 @@ export const CartItem = ({ item }) => {
           {item.description}
         </p>
         <Button onClick={additemToCart}>Add Food</Button>
+        <ToastContainer />
       </div>
     </>
   );
