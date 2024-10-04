@@ -31,7 +31,7 @@ export const CartItem = ({ item }) => {
     <>
       
 
-      <div className=" max-w-[350px] rounded-[20px] mb-10  flex flex-col justify-center items-center gap-4 bg-[#1D1A16] pb-6">
+      <div className=" max-w-[350px] rounded-[20px] mb-10  flex flex-col justify-center items-center gap-4 bg-[#1D1A16] pb-3">
         <img
           className=" rounded-[20px]"
           src={item.image}
