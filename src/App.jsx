@@ -10,8 +10,7 @@ import { Failed } from './components/Failed';
 
 function App() {
   return (
-    <UserProgressContextProvider>
-      <CartContextProvider>
+    
         <Router>
           <Routes> {/* Use Routes in place of Switch */}
             <Route path="/" element={<Home />} />
@@ -20,8 +19,7 @@ function App() {
             {/* Add other routes here as needed */}
           </Routes>
         </Router>
-      </CartContextProvider>
-    </UserProgressContextProvider>
+     
   );
 }
 
