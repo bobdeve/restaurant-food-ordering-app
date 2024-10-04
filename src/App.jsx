@@ -1,26 +1,24 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Use Routes instead of Switch
 import { Cart } from "./components/Cart";
 import { CheckOut } from "./components/CheckOut";
-import { Header } from "./components/Header";
+import { Home } from "./components/Home";
+import { Success } from "./components/Success";
 import { CartContextProvider } from "./storage/CartContext";
 import { UserProgressContextProvider } from "./storage/UserProgressContext";
 
-
-
 function App() {
-
-
   return (
-   
-
     <UserProgressContextProvider>
-
-    <CartContextProvider>
-      <Header/>
-      <Cart/>
-      <CheckOut/>
-    </CartContextProvider>
+      <CartContextProvider>
+        <Router>
+          <Routes> {/* Use Routes in place of Switch */}
+            <Route path="/" element={<Home />} />
+            <Route path="/success" element={<Success />} />
+            {/* Add other routes here as needed */}
+          </Routes>
+        </Router>
+      </CartContextProvider>
     </UserProgressContextProvider>
-  
   );
 }
 

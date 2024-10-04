@@ -44,7 +44,7 @@ export const CartItem = ({ item }) => {
         <p className=" self-center text-center px-3">
           {item.description}
         </p>
-        <Button onClick={additemToCart}>Add Item</Button>
+        <Button onClick={additemToCart}>Add Food</Button>
       </div>
     </>
   );

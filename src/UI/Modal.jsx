@@ -27,4 +27,3 @@ export const Modal = ({ open, children, ...props }) => {
     document.getElementById('modal') // Assuming you have a div with id="modal" in your HTML
   );
 };
-
