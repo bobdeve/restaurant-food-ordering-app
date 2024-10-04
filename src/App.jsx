@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Use Routes instead of Switch
-import { Cart } from "./components/Cart";
-import { CheckOut } from "./components/CheckOut";
+
 import { Home } from "./components/Home";
 import { Success } from "./components/Success";
 import { CartContextProvider } from "./storage/CartContext";
