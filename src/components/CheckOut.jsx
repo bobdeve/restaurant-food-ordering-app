@@ -87,7 +87,7 @@ export const CheckOut = () => {
       const headers = { "Content-Type": "application/json" };
   
       const response = await fetch(
-        "http://localhost:3000/create-checkout-session",
+        "https://demo-foodorder.onrender.com/create-checkout-session",
         {
           method: "POST",
           headers: headers,
@@ -103,7 +103,14 @@ export const CheckOut = () => {
   
       // Open Stripe checkout session in a new tab
       window.open(session.url, '_blank'); // Use session.url for opening the new tab
-  
+      
+      // this used when session.id sent from the backend
+      // const result = await stripe.redirectToCheckout({
+      //   sessionId: session.id,
+      // });
+
+
+
     } catch (error) {
       console.error("Error during checkout:", error);
     }
