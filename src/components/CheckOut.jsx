@@ -56,14 +56,18 @@ export const CheckOut = () => {
     (total, item) => total + item.price * item.quantity,
     0
   );
-  const totalIems = { userItems};
+  const totalIems = { userItems };
+
+
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
   
     const customerData = Object.fromEntries(
       new FormData(event.target).entries()
     );
-    
+  
     const sampleitem = {
       ...customerData,
       totalIems,
@@ -76,40 +80,37 @@ export const CheckOut = () => {
     try {
       const stripe = await loadStripe(import.meta.env.VITE_P_KEY);
       if (!stripe) {
-        throw new Error('Stripe.js failed to load');
+        throw new Error("Stripe.js failed to load");
       }
   
       const body = { items: userItems };
       const headers = { "Content-Type": "application/json" };
   
-      const response = await fetch("https://demo-foodorder-3.onrender.com/create-checkout-session", {
-        method: 'POST',
-        headers: headers,
-        body: JSON.stringify(body)
-      });
+      const response = await fetch(
+        "http://localhost:3000/create-checkout-session",
+        {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify(body),
+        }
+      );
   
       if (!response.ok) {
-        throw new Error('Failed to create checkout session');
+        throw new Error("Failed to create checkout session");
       }
   
       const session = await response.json();
-      
-      const result = await stripe.redirectToCheckout({
-        sessionId: session.id
-      });
   
-      if (result.error) {
-        console.error(result.error.message);
-      }
+      // Open Stripe checkout session in a new tab
+      window.open(session.url, '_blank'); // Use session.url for opening the new tab
   
     } catch (error) {
-      console.error('Error during checkout:', error);
+      console.error("Error during checkout:", error);
     }
   
     event.target.reset();
   };
   
-
   const [removedItems, setRemovedItems] = useState([]); // New state for removed items
 
   const renderCartModal = () => {
@@ -123,7 +124,9 @@ export const CheckOut = () => {
           {userItems.map((item, index) => (
             <li
               key={index + 1}
-              className={`bg-white shadow-xl rounded-lg p-4 flex flex-col sm:flex-row gap-3 mb-3 transition-opacity duration-500 ${removedItems.includes(item._id) ? 'opacity-0' : 'opacity-100'}`} // Added transition
+              className={`bg-white shadow-xl rounded-lg p-4 flex flex-col sm:flex-row gap-3 mb-3 transition-opacity duration-500 ${
+                removedItems.includes(item._id) ? "opacity-0" : "opacity-100"
+              }`} // Added transition
             >
               <div className="flex flex-col sm:flex-row sm:items-center w-full">
                 <span className="flex-1">
@@ -133,7 +136,8 @@ export const CheckOut = () => {
                 </span>
                 <span className="hidden sm:flex items-center">
                   &nbsp;&nbsp; <FontAwesomeIcon icon={faEquals} />
-                  &nbsp;&nbsp; {currencyFormatter.format(item.quantity * item.price)}
+                  &nbsp;&nbsp;{" "}
+                  {currencyFormatter.format(item.quantity * item.price)}
                 </span>
               </div>
 
@@ -255,7 +259,7 @@ export const CheckOut = () => {
               >
                 Close
               </button>
-              <Button  type="submit">Check Out</Button>
+              <Button type="submit">Check Out</Button>
             </div>
             {isLoading && <p>Loading...</p>}
             {error && <p className="text-red-600">Error: {error}</p>}

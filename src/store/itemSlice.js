@@ -8,7 +8,7 @@ const itemSlice =createSlice({
     initialState: initialItems,
     reducers: {
         removeItems(state,action){
-            console.log(action.payload)
+           
           const exisitingIndex = state.items.findIndex(item=> item._id === action.payload)
           
           
