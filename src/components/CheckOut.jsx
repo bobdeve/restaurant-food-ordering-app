@@ -29,11 +29,11 @@ export const CheckOut = () => {
     loading: isLoading,
     error,
     postData,
-  } = useFetchFoods("https://demo-foodorder-3.onrender.com/foods");
+  } = useFetchFoods("https://history.goldenstarscollege.com/foods");
   const { data: historyData, loading } = useFetchFoods(
-    "https://demo-foodorder-3.onrender.com/history"
+   "https://history.goldenstarscollege.com/history"
   );
-
+  // "https://demo-foodorder-3.onrender.com/history"  for history  https://demo-foodorder-3.onrender.com/foods
   const hideUserCart = () => dispatch(progressAction.hideModal());
   const userItems = useSelector((state) => state.items.items);
   const progress = useSelector((state) => state.progress.progress);
@@ -87,14 +87,14 @@ export const CheckOut = () => {
       const headers = { "Content-Type": "application/json" };
   
       const response = await fetch(
-        "https://demo-foodorder.onrender.com/create-checkout-session",
+        "https://history.goldenstarscollege.com/create-checkout-session",
         {
           method: "POST",
           headers: headers,
           body: JSON.stringify(body),
         }
       );
-  
+  //  "https://demo-foodorder.onrender.com/create-checkout-session"   this is render site just in case 
       if (!response.ok) {
         throw new Error("Failed to create checkout session");
       }
