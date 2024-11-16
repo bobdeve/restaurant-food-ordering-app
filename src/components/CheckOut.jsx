@@ -85,6 +85,7 @@ export const CheckOut = () => {
       }
   
       const body = { items: userItems };
+   
       const headers = { "Content-Type": "application/json" };
   
       const response = await fetch(
