@@ -33,7 +33,7 @@ export const CheckOut = () => {
   const { data: historyData, loading } = useFetchFoods(
    "https://history.goldenstarscollege.com/history"
   );
-  // "https://demo-foodorder-3.onrender.com/history"  for history  https://demo-foodorder-3.onrender.com/foods
+  // "https://demo-foodorder-3.onrender.com/history s"  for history  https://demo-foodorder-3.onrender.com/foods
   const hideUserCart = () => dispatch(progressAction.hideModal());
   const userItems = useSelector((state) => state.items.items);
   const progress = useSelector((state) => state.progress.progress);
@@ -45,6 +45,7 @@ export const CheckOut = () => {
 
     window.location.reload();
   };
+  console.log(historyData)
   const userRemoveItem = (id) => {
     setRemovedItems((prev) => [...prev, id]); // Add item to removedItems
     dispatch(itemAction.removeItems(id));
