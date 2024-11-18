@@ -45,7 +45,7 @@ export const CheckOut = () => {
 
     window.location.reload();
   };
-  console.log(historyData)
+
   const userRemoveItem = (id) => {
     setRemovedItems((prev) => [...prev, id]); // Add item to removedItems
     dispatch(itemAction.removeItems(id));
