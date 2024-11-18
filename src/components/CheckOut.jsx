@@ -31,7 +31,7 @@ export const CheckOut = () => {
     postData,
   } = useFetchFoods("https://history.goldenstarscollege.com/foods");
   const { data: historyData, loading } = useFetchFoods(
-   "https://history.goldenstarscollege.com/history"
+   "https://history.goldenstarscollege.com/histories"
   );
   // "https://demo-foodorder-3.onrender.com/history s"  for history  https://demo-foodorder-3.onrender.com/foods
   const hideUserCart = () => dispatch(progressAction.hideModal());
